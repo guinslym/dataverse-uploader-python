@@ -10,6 +10,7 @@ from dataverse_uploader.core.abstract_uploader import AbstractUploader
 from dataverse_uploader.core.config import UploaderConfig
 from dataverse_uploader.core.exceptions import (
     DatasetLockedError,
+    NetworkError,
     UploaderException,
     UploadError,
 )
@@ -262,6 +263,14 @@ class DataverseUploader(AbstractUploader):
                 file, parent_path, storage_id, file.length(), etag
             )
             
+        except NetworkError as e:
+            # If direct upload is not supported (404), fall back to traditional
+            if "404" in str(e) or "Direct upload not supported" in str(e):
+                logger.warning(f"Direct upload not supported, falling back to traditional upload")
+                return self._upload_file_traditional(file, parent_path)
+            else:
+                logger.error(f"Direct upload failed for {file.get_name()}: {e}")
+                return None
         except Exception as e:
             logger.error(f"Direct upload failed for {file.get_name()}: {e}")
             return None
