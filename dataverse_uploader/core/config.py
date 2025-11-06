@@ -18,6 +18,8 @@ class UploaderConfig(BaseSettings):
         env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=False,
+        extra="ignore",  # Ignore extra fields instead of raising error
+        populate_by_name=True,  # Allow both field name and alias
     )
 
     # Server configuration
@@ -33,7 +35,6 @@ class UploaderConfig(BaseSettings):
     # Dataset configuration
     dataset_pid: Optional[str] = Field(
         None,
-        alias="dataset_doi",
         description="Dataset persistent identifier (DOI)"
     )
     dataverse_alias: Optional[str] = Field(

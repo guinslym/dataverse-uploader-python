@@ -6,43 +6,41 @@ from typing import List, Optional
 
 import typer
 from rich.console import Console
-from rich.progress import Progress
+from dotenv import load_dotenv
 
 from dataverse_uploader.core.config import UploaderConfig
 from dataverse_uploader.core.exceptions import UploaderException
 from dataverse_uploader.uploaders.dataverse import DataverseUploader
 
-app = typer.Typer(
-    name="dv-upload",
-    help="Command-line bulk uploader for Dataverse repositories",
-    add_completion=False,
-)
+# Load .env file explicitly
+load_dotenv()
+
+# Create a simple app instance without subcommands
 console = Console()
 
 
-@app.command()
-def upload(
+def main(
     paths: List[Path] = typer.Argument(
         ...,
         help="Files or directories to upload",
         exists=True,
     ),
-    server: str = typer.Option(
-        ...,
+    server: Optional[str] = typer.Option(
+        None,
         "--server",
         "-s",
         help="Dataverse server URL (e.g., https://dataverse.example.org)",
         envvar="DV_SERVER_URL",
     ),
-    api_key: str = typer.Option(
-        ...,
+    api_key: Optional[str] = typer.Option(
+        None,
         "--key",
         "-k",
         help="API key for authentication",
         envvar="DV_API_KEY",
     ),
-    dataset: str = typer.Option(
-        ...,
+    dataset: Optional[str] = typer.Option(
+        None,
         "--dataset",
         "--did",
         "-d",
@@ -163,16 +161,14 @@ def upload(
         sys.exit(130)
     except Exception as e:
         console.print(f"[bold red]Unexpected error:[/bold red] {e}")
-        if config.verbose:
+        if verbose:
             console.print_exception()
         sys.exit(1)
 
 
-@app.command()
-def version():
-    """Show version information."""
-    console.print("Dataverse Uploader v1.3.0")
-    console.print("Python implementation of DVUploader")
+# Create the Typer app with the main function as the default command
+app = typer.Typer(add_completion=False)
+app.command()(main)
 
 
 if __name__ == "__main__":
