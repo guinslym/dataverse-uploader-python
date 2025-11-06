@@ -596,8 +596,8 @@ Contributions welcome! Please:
 
 ## Support
 
-- **Issues**: https://github.com/your-org/dataverse-uploader-python/issues
-- **Wiki**: https://github.com/your-org/dataverse-uploader-python/wiki
+- **Issues**: https://github.com/guinslym/dataverse-uploader-python/issues
+- **Wiki**: https://github.com/guinslym/dataverse-uploader-python/wiki
 - **Tutorial**: https://youtu.be/dEPccXpUs9w
 - **Dataverse Community**: https://dataverse.org
 
