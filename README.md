@@ -161,6 +161,17 @@ dv-upload data/ \
   --list-only \
   --recurse
 ```
+#### Creating dummy files to upload
+```bash
+python examples\generate_large_files.py # choose option 1
+#or
+python examples\create_csv_files.py  
+#then
+dv-upload data/ --recurse --verify
+#or
+dv-upload *.csv --recurse --verify
+```
+
 
 #### Using Environment Variables
 
