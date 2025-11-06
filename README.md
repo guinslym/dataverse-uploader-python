@@ -196,7 +196,7 @@ from dataverse_uploader.uploaders.dataverse import DataverseUploader
 
 # Configure uploader
 config = UploaderConfig(
-    server_url="https://demo.dataverse.org",
+    server_url="https://demo.yourdataverse.org",
     api_key="your-api-key",
     dataset_pid="doi:10.5072/FK2/ABCDEF",
     verify_checksums=True,
