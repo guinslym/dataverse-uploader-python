@@ -161,7 +161,7 @@ dv-upload data/ \
   --list-only \
   --recurse
 ```
-#### Creating dummy files to upload
+#### Creating dummy files to upload on Dataverse
 ```bash
 python examples\generate_large_files.py # choose option 1
 #or
