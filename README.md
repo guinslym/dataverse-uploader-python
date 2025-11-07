@@ -6,6 +6,10 @@ A Python implementation of the DVUploader command-line bulk uploader for Dataver
 
 **📺 Watch the Tutorial**: [Dataverse Uploader Python - Complete Guide](https://youtu.be/dEPccXpUs9w)
 
+## 🎬 Demo
+
+![Demo of Dataverse Uploader](examples/demo.gif)
+
 ## Features
 
 - **Bulk uploads**: Upload hundreds or thousands of files efficiently
